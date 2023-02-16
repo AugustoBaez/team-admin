@@ -25,6 +25,7 @@ const AddPlayer = () => {
         e.preventDefault()
         axios.post(`http://localhost:8000/api/player/new`, {
             name,
+            position
         })
             .then((res) => {
                 console.log(res, "succesful")

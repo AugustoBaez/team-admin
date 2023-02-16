@@ -3,21 +3,22 @@ import axios from 'axios'
 
 const List = () => {
     const [player, setPlayer] = useState([])
+    const [position, setPosition] = useState([])
 
     useEffect(() => {
         const getAllPlayers = async () => {
             try {
                 const result = await axios.get("http://localhost:8000/api/players/")
-                setPlayer(result.data.player)
+                setPlayer(result.data.player.map((player) => player))
+                // setPosition(result.data.player.map((player) => player.position))
             }
             catch (error) {
                 console.log(error)
-
             }
         }
         getAllPlayers()
     }, [])
-    console.log(player)
+    console.log(player, "nombre")
     return (
         <div>
             <h1>List</h1>
@@ -28,11 +29,17 @@ const List = () => {
                     <th>Preferred Position</th>
                     <th>Actions</th>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                {player.map((jugador) => {
+                    <>
+                    <p>{jugador.name}</p>
+                        {/* <tr>
+                            <td>{jugador.name}</td>
+                            <td>{jugador.position}</td>
+                            <td></td>
+                        </tr> */}
+                    </>
+                })}
+
             </table>
         </div>
     )
