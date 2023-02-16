@@ -8,7 +8,7 @@ const TeamSchema = new mongoose.Schema(
             minLength: [3, "name must be at least 3 characters long"]
         },
         status: {
-            type: null
+            type: Boolean
         },
         position: {
             type: String,
@@ -17,3 +17,4 @@ const TeamSchema = new mongoose.Schema(
     { timestamps: true }
 )
 const Team = mongoose.model("Team", TeamSchema)
+module.exports = Team

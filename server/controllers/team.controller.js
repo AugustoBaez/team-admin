@@ -15,7 +15,7 @@ module.exports.findPlayer = (req, res) => {
         .catch((error) => res.json({ message: "error finding player", error }))
 }
 
-module.exports.addPlayer = (req) => {
+module.exports.addPlayer = (req, res) => {
     Team.create(req.body)
         .then((newPlayer) => res.json({ player: newPlayer }))
         .catch((error) => res.json({ message: "error adding new player", error }))
@@ -29,5 +29,6 @@ module.exports.updatePlayer = (req, res) => {
 
 module.exports.deletePlayer = (req, res) => {
     Team.deleteOne({ _id: req.params.id })
-        .then((result) => res.json({ message: "error deleting player", error }))
+        .then((result) => res.json({ result }))
+        .catch((error) => res.json({ message: "error deleting player", error }))
 }
