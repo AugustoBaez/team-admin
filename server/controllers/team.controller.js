@@ -18,7 +18,7 @@ module.exports.findPlayer = (req, res) => {
 module.exports.addPlayer = (req, res) => {
     Team.create(req.body)
         .then((newPlayer) => res.json({ player: newPlayer }))
-        .catch((error) => res.json({ message: "error adding new player", error }))
+        .catch((error) => catchError(error, res))
 }
 
 module.exports.updatePlayer = (req, res) => {

@@ -10,8 +10,8 @@ function App() {
       <h1>Manage Player</h1>
       <h1>Manage Player Status</h1>
       {/* <Window> */}
-      {/* <List /> */}
       <AddPlayer />
+      <List />
       {/* </Window> */}
       {/* <BrowserRouter>
         <Routes>

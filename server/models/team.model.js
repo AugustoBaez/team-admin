@@ -2,13 +2,10 @@ const mongoose = require("mongoose")
 
 const TeamSchema = new mongoose.Schema(
     {
-        player: {
+        name: {
             type: String,
             required: [true, "name is required"],
             minLength: [3, "name must be at least 3 characters long"]
-        },
-        status: {
-            type: Boolean
         },
         position: {
             type: String,
