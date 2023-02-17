@@ -15,7 +15,7 @@ const AddPlayer = () => {
         })
             .then((res) => {
                 console.log(res, "succesful")
-                navigate("/players")
+                navigate("/players/list")
             })
             .catch((error) => {
                 console.log(error)

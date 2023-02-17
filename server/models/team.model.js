@@ -9,6 +9,9 @@ const TeamSchema = new mongoose.Schema(
         },
         position: {
             type: String,
+        },
+        status: {
+            type: String
         }
     },
     { timestamps: true }
