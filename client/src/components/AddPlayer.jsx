@@ -1,26 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const AddPlayer = () => {
     const [name, setName] = useState("")
     const [position, setPosition] = useState("")
     const [errors, setErrors] = useState(null)
-
-
-    // const addJugador = () => {
-    //     axios.post(`http://localhost:8000/api/player/new`, {
-    //     name,
-    //     position
-    //   })
-    //   .then((res) => {
-    //     console.log(res, "succesful")
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //     setErrors(error)
-    //   })
-    // }
-
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post(`http://localhost:8000/api/player/new`, {
@@ -29,6 +15,7 @@ const AddPlayer = () => {
         })
             .then((res) => {
                 console.log(res, "succesful")
+                navigate("/players")
             })
             .catch((error) => {
                 console.log(error)

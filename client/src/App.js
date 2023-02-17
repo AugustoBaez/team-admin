@@ -7,21 +7,12 @@ import AddPlayer from './components/AddPlayer';
 function App() {
   return (
     <div className="App">
-      <h1>Manage Player</h1>
-      <h1>Manage Player Status</h1>
-      {/* <Window> */}
-      <AddPlayer />
-      <List />
-      {/* </Window> */}
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path='/' element={
-            <Window>
-              <List />
-            </Window>
-          }></Route>
+          <Route path='/players' element={<List />}></Route>
+          <Route path='/' element={<AddPlayer />}></Route>
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
