@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import Window from './Window';
+import SecondWindow from './SecondWindow';
 const AddPlayer = () => {
     const [name, setName] = useState("")
     const [position, setPosition] = useState("")
@@ -26,6 +27,7 @@ const AddPlayer = () => {
     return (
         <div>
             <Window />
+            <SecondWindow />
             <h2>Add Player</h2>
             <form onSubmit={handleSubmit}>
                 <div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Window = () => {
   return (
-    <div>
+    <div className='windows'>
       <h1>
         <a href={'/players/list'}>
           Manage Players

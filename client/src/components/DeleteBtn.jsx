@@ -13,7 +13,7 @@ const DeleteBtn = (props) => {
 
     return (
         <>
-            <button onClick={() => setIsOpen(true)}>Delete</button>
+            <button id="deleteBtn" onClick={() => setIsOpen(true)}>Delete</button>
             <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)}>
                 <h4>Are you sure you want to remove {playerName}</h4>
                 <button onClick={deletePlayer}>Yes</button>

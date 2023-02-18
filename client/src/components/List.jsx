@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DeleteBtn from './DeleteBtn'
 import Window from './Window'
+import SecondWindow from './SecondWindow'
 
 const List = () => {
     const [player, setPlayer] = useState([])
@@ -24,29 +25,30 @@ const List = () => {
     console.log(player, "nombre")
 
     return (
-        <div>
+        <>
             <Window />
-            <h1>List</h1>
-            <h1>Add Player</h1>
-            <table>
-                <tr>
-                    <th>Team Name</th>
-                    <th>Preferred Position</th>
-                    <th>Actions</th>
-                </tr>
-                <tbody>
-                    {player.map((jugador, index) => (
-                        <tr key={index}>
-                            <td>{jugador.name}</td>
-                            <td>{jugador.position}</td>
-                            <td>
-                                <DeleteBtn playerName={jugador.name} playerId={jugador._id} successCallback={() => removeFromDom(jugador._id)} />
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            <SecondWindow />
+            <div className='container'>
+                <table className='tableContainer'>
+                    <tr className='tableHead'>
+                        <th>Team Name</th>
+                        <th>Preferred Position</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tbody>
+                        {player.map((jugador, index) => (
+                            <tr key={index}>
+                                <td>{jugador.name}</td>
+                                <td>{jugador.position}</td>
+                                <td>
+                                    <DeleteBtn playerName={jugador.name} playerId={jugador._id} successCallback={() => removeFromDom(jugador._id)} />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
     )
 }
 

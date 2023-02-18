@@ -1,3 +1,87 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+}
+#registerBtn {
+  width: 70%;
+  border: none;
+  color: white;
+  background-color: rgb(39, 39, 39);
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.container, .registerContainer {
+  justify-content: center;
+  /* background-color: red; */
+}
+
+.container, .windows{
+  display: flex;
+}
+
+.registerContainer {
+  padding: 10%;
+  display: inline-block;
+  background-color: #dddddd;
+  align-items: center;
+  width: 70%;
+  height: 50%;
+  margin: 30px;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+.registerContainer, .tableContainer {
+  box-shadow: 2px 2px 4px #969191;
+  border-radius: 10px;
+}
+
+.tableContainer {
+  justify-content: center;
+  width: 90%;
+}
+
+.tableHead {
+  justify-content: space-between;
+}
+
+tr, td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+table {
+  padding: 2%;
+  border-radius: 10px;
+}
+
+#deleteBtn {
+  border-radius: 5px;
+  background-color: red;
+  width: 100px;
+  height: 30px;
+  color: white;
+}
+
+button {
+  color: black;
+  box-shadow: 2px 2px 4px #302a2a;
+}
+
+.windows {
+  justify-content: space-around;
 }

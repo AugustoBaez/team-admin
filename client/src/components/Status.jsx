@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams, useLocation, useNavigate} from 'react-router-dom';
 import Window from './Window';
+import SecondWindow from './SecondWindow';
 const STATUS = {
   PLAYING: "Playing",
   NOT_PLAYING: "Not Playing",
@@ -44,11 +45,11 @@ const Status = () => {
 
   // }
   return (
-    <div>
+    <>
       <Window />
-      <h1>List</h1>
-      <h1>Add Player</h1>
-      <table>
+      <SecondWindow />
+    <div className="container">
+      <table className='tableContainer'>
         <tr>
           <th>Team Name</th>
           <th>Actions</th>
@@ -57,7 +58,6 @@ const Status = () => {
           {player.map((jugador, index) => (
             <tr key={index}>
               <td>{jugador.name}</td>
-              <td>{jugador.position}</td>
               <td>
                 <button style={{backgroundColor: active ? "green" : null}}onClick={()=> setActive(!active)}>Playing</button>
                 <button onClick={()=> setActive(!active)}>Not Playing</button>
@@ -68,6 +68,7 @@ const Status = () => {
         </tbody>
       </table>
     </div>
+    </>
   )
 }
 
