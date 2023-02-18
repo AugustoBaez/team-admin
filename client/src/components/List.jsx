@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DeleteBtn from './DeleteBtn'
+import Window from './Window'
 
 const List = () => {
     const [player, setPlayer] = useState([])
@@ -24,6 +25,7 @@ const List = () => {
 
     return (
         <div>
+            <Window />
             <h1>List</h1>
             <h1>Add Player</h1>
             <table>

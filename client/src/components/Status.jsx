@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams, useLocation, useNavigate} from 'react-router-dom';
-
+import Window from './Window';
 const STATUS = {
   PLAYING: "Playing",
   NOT_PLAYING: "Not Playing",
@@ -45,6 +45,7 @@ const Status = () => {
   // }
   return (
     <div>
+      <Window />
       <h1>List</h1>
       <h1>Add Player</h1>
       <table>
