@@ -7,6 +7,7 @@
 .App {
   text-align: center;
 }
+
 #registerBtn {
   width: 70%;
   border: none;
@@ -17,44 +18,47 @@
   margin: 20px;
 }
 
-.container, .registerContainer {
-  justify-content: center;
-  /* background-color: red; */
-}
-
-.container, .windows{
-  display: flex;
-}
-
 .registerContainer {
   padding: 10%;
   display: inline-block;
   background-color: #dddddd;
-  align-items: center;
   width: 70%;
   height: 50%;
   margin: 30px;
 }
 
-.registerbtn:hover {
-  opacity:1;
+.registerContainer,
+form {
+  align-items: center;
 }
 
-.registerContainer, .tableContainer {
+.registerbtn:hover {
+  opacity: 1;
+}
+
+.registerContainer,
+.tableContainer {
   box-shadow: 2px 2px 4px #969191;
   border-radius: 10px;
 }
 
 .tableContainer {
-  justify-content: center;
   width: 90%;
+}
+
+.tableContainer,
+form,
+.container,
+.registerContainer {
+  justify-content: center;
 }
 
 .tableHead {
   justify-content: space-between;
 }
 
-tr, td{
+tr,
+td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -84,4 +88,47 @@ button {
 
 .windows {
   justify-content: space-around;
+  background-color: black;
+  padding: 10px;
+}
+
+.windows a {
+  text-decoration: none;
+  color: white;
+}
+
+form {
+  width: 100%;
+  padding: 10px;
+  height: 100%;
+  flex-direction: column;
+  position: absolute;
+}
+
+label,
+input,
+form,
+.container,
+.windows {
+  display: flex;
+}
+
+#addBtn,
+input {
+  width: 50%;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#addBtn {
+  background-color: #302a2a;
+  color: white;
+}
+
+input {
+  border-style: solid;
+  border-color: #dddddd;
+  padding: 10px;
+  margin-bottom: 5px;
 }
