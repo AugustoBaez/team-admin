@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
+
 const STATUS = {
   PLAYING: "Playing",
   NOT_PLAYING: "Not Playing",
@@ -38,10 +39,6 @@ const Status = () => {
     getAllPlayers()
   }, [])
 
-  // const updateStat = (playerToUpdate, newStatus) => {
-
-
-  // }
   return (
     <>
       <div className="container">

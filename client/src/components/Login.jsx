@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 const Login = () => {
@@ -12,14 +12,11 @@ const Login = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="">Email: </label>
-                <input type="text" onChange={(e) => setEmail(e.target.value)}/>
-            </div>
-            <div>
-                <label htmlFor="">Password: </label>
-                <input type="text" onChange={(e) => setEmail(e.target.value)}/>
-            </div>
+            <h1>Welcome to Team Admin</h1>
+            <h2>Please, enter your user</h2>
+            <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder='Email' />
+            <input type="password" onChange={(e) => setEmail(e.target.value)} placeholder='password' />
+            <button type='submit' id='addBtn'><strong>Login</strong></button>
         </form>
     )
 }

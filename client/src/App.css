@@ -117,16 +117,17 @@ form,
 input {
   width: 50%;
   height: 40px;
-  border-radius: 10px;
   margin-top: 10px;
 }
 
 #addBtn {
   background-color: #302a2a;
+  border-radius: 20px;
   color: white;
 }
 
 input {
+  border-radius: 10px;
   border-style: solid;
   border-color: #dddddd;
   padding: 10px;
