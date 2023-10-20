@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
-const STATUS = {
-  PLAYING: "Playing",
-  NOT_PLAYING: "Not Playing",
-  UNDECIDED: "Undecided"
-}
+import { useParams } from 'react-router-dom';
+import Window from './Window';
+import SecondWindow from './SecondWindow';
+
 
 const Status = () => {
 
   const [player, setPlayer] = useState([])
-  const [status, setStatus] = useState("Undecided")
-  const [active, setActive] = useState(false)
-  const [btnColor, setBtnColor] = useState("")
-  const { id } = useParams()
+  const [status, setStatus] = useState({})
+  const [playerId, setPlayerId] = useState()
+  const [currentStatus, setCurrentStatus] = useState()
 
-  const styles = () => {
-    if (status == "Playing") {
-      return setBtnColor("green")
-    }
-    else if (status == "Not Playing") {
-      return setBtnColor("red")
-    }
-    else {
-      return setBtnColor("yellow")
-    }
+
+  const handleStatus = (playerId, estado) => {
+    setStatus(status)
+    console.log(status, "status")
+    axios.put(`http://localhost:8000/api/player/update/${playerId}`, {
+      status: estado
+    })
+      .then((res) => {
+        console.log("updated", res)
+      })
+      .catch((error) => {
+        console.error("update error", error)
+      })
   }
 
   const getAllPlayers = () => {
@@ -35,16 +35,26 @@ const Status = () => {
       })
   }
 
+  const getPlayerStatus = async (playerId, estado) => {
+    const result = await axios.get(`http://localhost:8000/api/player/${playerId}`)
+    console.log(result.data[0]._id, "get result")
+    setCurrentStatus(result.data[0].status)
+    handleStatus(playerId, estado)
+  }
+  console.log(playerId, "player id")
+
   useEffect(() => {
     getAllPlayers()
-  }, [])
+  }, [status])
 
   return (
     <>
+      <Window />
+      <SecondWindow />
       <div className="container">
         <table className='tableContainer'>
           <tr>
-            <th>Team Name</th>
+            <th>Player Name</th>
             <th>Actions</th>
           </tr>
           <tbody>
@@ -52,9 +62,12 @@ const Status = () => {
               <tr key={index}>
                 <td>{jugador.name}</td>
                 <td>
-                  <button style={{ backgroundColor: active ? "green" : null }} onClick={() => setActive(!active)}>Playing</button>
-                  <button onClick={() => setActive(!active)}>Not Playing</button>
-                  <button onClick={() => setActive(!active)}>Undecided</button>
+                  {/* <button style={{ backgroundColor: status[jugador._id] == "playing" ? "green" : null }} onClick={() => getPlayerStatus(jugador._id, "playing")} value="playing">Playing</button>
+                  <button style={{ backgroundColor: status[jugador._id] == "not playing" ? "red" : null }} onClick={() => getPlayerStatus(jugador._id, "not playing")} value="not playing">Not Playing</button>
+                  <button style={{ backgroundColor: status[jugador._id] == "undecided" ? "yellow" : null }} onClick={() => getPlayerStatus(jugador._id, "undecided")} value="undecided">Undecided</button> */}
+                  <button style={{ backgroundColor: currentStatus == "playing" ? "green" : null }} onClick={() => getPlayerStatus(jugador._id, "playing")} value="playing">Playing</button>
+                  <button style={{ backgroundColor: currentStatus == "not playing" ? "red" : null }} onClick={() => getPlayerStatus(jugador._id, "not playing")} value="not playing">Not Playing</button>
+                  <button style={{ backgroundColor: currentStatus == "undecided" ? "yellow" : null }} onClick={() => getPlayerStatus(jugador._id, "undecided")} value="undecided">Undecided</button>
                 </td>
               </tr>
             ))}
