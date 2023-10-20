@@ -1,32 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams, useLocation, useNavigate} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Window from './Window';
 import SecondWindow from './SecondWindow';
-const STATUS = {
-  PLAYING: "Playing",
-  NOT_PLAYING: "Not Playing",
-  UNDECIDED: "Undecided"
-}
 
 const Status = () => {
 
   const [player, setPlayer] = useState([])
-  const [status, setStatus] = useState("Undecided")
-  const [active, setActive] = useState(false)
-  const [btnColor, setBtnColor] = useState("") 
+  const [playerStatus, setPlayerStatus] = useState({})
   const { id } = useParams()
 
-  const styles = () => {
-    if (status == "Playing") {
-      return setBtnColor("green")
-    }
-    else if (status == "Not Playing") {
-      return setBtnColor("red")
-    }
-    else {
-      return setBtnColor("yellow")
-    }
+  const handleStatus = (playerId, status) => {
+    setPlayerStatus({ ...playerStatus, [playerId]: status })
   }
 
   const getAllPlayers = () => {
@@ -36,38 +21,40 @@ const Status = () => {
       })
   }
 
+  const updateStatus = () => {
+    axios.put(`http://localhost:8000/api/player/update/${id}`, {
+      playerStatus
+    })
+  }
+
   useEffect(() => {
     getAllPlayers()
-  }, [])
+  }, [playerStatus])
 
-  // const updateStat = (playerToUpdate, newStatus) => {
-
-
-  // }
   return (
     <>
       <Window />
       <SecondWindow />
-    <div className="container">
-      <table className='tableContainer'>
-        <tr>
-          <th>Team Name</th>
-          <th>Actions</th>
-        </tr>
-        <tbody>
-          {player.map((jugador, index) => (
-            <tr key={index}>
-              <td>{jugador.name}</td>
-              <td>
-                <button style={{backgroundColor: active ? "green" : null}}onClick={()=> setActive(!active)}>Playing</button>
-                <button onClick={()=> setActive(!active)}>Not Playing</button>
-                <button onClick={()=> setActive(!active)}>Undecided</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <div className="container">
+        <table className='tableContainer'>
+          <tr>
+            <th>Player Name</th>
+            <th>Actions</th>
+          </tr>
+          <tbody>
+            {player.map((jugador, index) => (
+              <tr key={index}>
+                <td>{jugador.name}</td>
+                <td>
+                  <button style={{ backgroundColor: playerStatus[jugador._id] == "playing" ? "green" : null }} onClick={() => handleStatus(jugador._id, "playing")} value="playing">Playing</button>
+                  <button style={{ backgroundColor: playerStatus[jugador._id] == "not playing" ? "red" : null }} onClick={() => handleStatus(jugador._id, "not playing")} value="not playing">Not Playing</button>
+                  <button style={{ backgroundColor: playerStatus[jugador._id] == "undecided" ? "yellow" : null }} onClick={() => handleStatus(jugador._id, "undecided")} value="undecided">Undecided</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   )
 }

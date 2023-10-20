@@ -7,6 +7,7 @@ import SecondWindow from './SecondWindow'
 const List = () => {
     const [player, setPlayer] = useState([])
 
+
     const removeFromDom = (playerId) => {
         setPlayer(player.filter(jugador => jugador._id !== playerId))
     }
@@ -17,7 +18,6 @@ const List = () => {
                 setPlayer(res.data.player)
             })
     }
-
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -31,7 +31,7 @@ const List = () => {
             <div className='container'>
                 <table className='tableContainer'>
                     <tr className='tableHead'>
-                        <th>Team Name</th>
+                        <th>Player Name</th>
                         <th>Preferred Position</th>
                         <th>Actions</th>
                     </tr>
