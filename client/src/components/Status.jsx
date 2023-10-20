@@ -12,6 +12,15 @@ const Status = () => {
 
   const handleStatus = (playerId, status) => {
     setPlayerStatus({ ...playerStatus, [playerId]: status })
+    axios.put(`http://localhost:8000/api/player/update/${playerId}`, {
+      playerStatus: { [playerId]: status }
+    })
+      .then((res) => {
+        console.log("updated", res)
+      })
+      .catch((error) => {
+        console.error("update error", error)
+      })
   }
 
   const getAllPlayers = () => {
@@ -21,11 +30,8 @@ const Status = () => {
       })
   }
 
-  const updateStatus = () => {
-    axios.put(`http://localhost:8000/api/player/update/${id}`, {
-      playerStatus
-    })
-  }
+  // const updateStatus = () => {
+  // }
 
   useEffect(() => {
     getAllPlayers()

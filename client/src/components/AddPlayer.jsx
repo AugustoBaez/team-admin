@@ -6,13 +6,15 @@ import SecondWindow from './SecondWindow';
 const AddPlayer = () => {
     const [name, setName] = useState("")
     const [position, setPosition] = useState("")
+    const [status, setStatus] = useState("undecided")
     const [errors, setErrors] = useState(null)
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post(`http://localhost:8000/api/player/new`, {
             name,
-            position
+            position,
+            status
         })
             .then((res) => {
                 console.log(res, "succesful")
