@@ -7,13 +7,13 @@ import SecondWindow from './SecondWindow';
 const Status = () => {
 
   const [player, setPlayer] = useState([])
-  const [playerStatus, setPlayerStatus] = useState({})
-  const { id } = useParams()
+  const [status, setStatus] = useState({})
 
-  const handleStatus = (playerId, status) => {
-    setPlayerStatus({ ...playerStatus, [playerId]: status })
+  const handleStatus = (playerId, estado) => {
+    setStatus(status)
+    console.log(status, "status")
     axios.put(`http://localhost:8000/api/player/update/${playerId}`, {
-      playerStatus: { [playerId]: status }
+      status: estado
     })
       .then((res) => {
         console.log("updated", res)
@@ -30,12 +30,9 @@ const Status = () => {
       })
   }
 
-  // const updateStatus = () => {
-  // }
-
   useEffect(() => {
     getAllPlayers()
-  }, [playerStatus])
+  }, [status])
 
   return (
     <>
@@ -52,9 +49,9 @@ const Status = () => {
               <tr key={index}>
                 <td>{jugador.name}</td>
                 <td>
-                  <button style={{ backgroundColor: playerStatus[jugador._id] == "playing" ? "green" : null }} onClick={() => handleStatus(jugador._id, "playing")} value="playing">Playing</button>
-                  <button style={{ backgroundColor: playerStatus[jugador._id] == "not playing" ? "red" : null }} onClick={() => handleStatus(jugador._id, "not playing")} value="not playing">Not Playing</button>
-                  <button style={{ backgroundColor: playerStatus[jugador._id] == "undecided" ? "yellow" : null }} onClick={() => handleStatus(jugador._id, "undecided")} value="undecided">Undecided</button>
+                  <button style={{ backgroundColor: status[jugador._id] == "playing" ? "green" : null }} onClick={() => handleStatus(jugador._id, "playing")} value="playing">Playing</button>
+                  <button style={{ backgroundColor: status[jugador._id] == "not playing" ? "red" : null }} onClick={() => handleStatus(jugador._id, "not playing")} value="not playing">Not Playing</button>
+                  <button style={{ backgroundColor: status[jugador._id] == "undecided" ? "yellow" : null }} onClick={() => handleStatus(jugador._id, "undecided")} value="undecided">Undecided</button>
                 </td>
               </tr>
             ))}
