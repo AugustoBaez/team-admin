@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+
 import { useParams } from 'react-router-dom';
 import Window from './Window';
 import SecondWindow from './SecondWindow';
+
 
 const Status = () => {
 
@@ -10,6 +12,7 @@ const Status = () => {
   const [status, setStatus] = useState({})
   const [playerId, setPlayerId] = useState()
   const [currentStatus, setCurrentStatus] = useState()
+
 
   const handleStatus = (playerId, estado) => {
     setStatus(status)

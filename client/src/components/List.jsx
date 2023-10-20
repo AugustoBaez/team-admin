@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DeleteBtn from './DeleteBtn'
-import Window from './Window'
-import SecondWindow from './SecondWindow'
 
 const List = () => {
     const [player, setPlayer] = useState([])
@@ -26,8 +24,6 @@ const List = () => {
 
     return (
         <>
-            <Window />
-            <SecondWindow />
             <div className='container'>
                 <table className='tableContainer'>
                     <tr className='tableHead'>
